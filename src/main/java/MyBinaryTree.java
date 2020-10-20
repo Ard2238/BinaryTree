@@ -24,5 +24,18 @@ public class MyBinaryTree<K extends Comparable<K>> {
     public int getSizeRecursively(MyBinaryNode root){
         return this.root == null ? 0 : 1 + this.getSizeRecursively(root.left) + this.getSizeRecursively(root.right);
     }
+    public void search(K key){
+        searchRecursively(this.root, key);
+    }
+    public void searchRecursively(MyBinaryNode current, K key){
+        if(current == null)
+            return;
+        if(current.key == key)
+            System.out.println("Node Exists");
+        else if( current.key.compareTo(key) > 0)
+            searchRecursively(current.right, key);
+        else
+            searchRecursively(current.left, key);
+    }
 
 }

@@ -12,5 +12,7 @@ public class MyBinaryTreeMain {
             System.out.print(true);
         else
             System.out.print(false);
+
+        myBinaryTree.search(70);
     }
 }
