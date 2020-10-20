@@ -1,19 +1,28 @@
 public class MyBinaryTree<K extends Comparable<K>> {
     MyBinaryNode<K> root;
-
-    public void add(MyBinaryNode root, K key){
+    public void add(K key){
+        this.root = addRecursively(root, key);
+    }
+    public MyBinaryNode<K> addRecursively(MyBinaryNode root, K key){
         if(root == null) {
-            root = new MyBinaryNode(key);
-            return;
+            return new MyBinaryNode<>(key);
         }
         int result = key.compareTo((K) root.key);
         if(result == 0)
-            return;
+            return root;
         else if(result < 0)
-            add(root.left, key);
+            root.left = addRecursively(root.left, key);
         else
-            add(root.right, key);
-
-        return;
+            root.right = addRecursively(root.right, key);
+        return root;
     }
+
+    public int getSize(){
+        return this.getSizeRecursively(this.root);
+    }
+
+    public int getSizeRecursively(MyBinaryNode root){
+        return this.root == null ? 0 : 1 + this.getSizeRecursively(root.left) + this.getSizeRecursively(root.right);
+    }
+
 }
